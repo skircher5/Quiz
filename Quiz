@@ -1,0 +1,97 @@
+Line 1-6/**
+js.doc 	*   @author Bates, Howard (hbates@northmen.org)
+ multiline *   @version 0.0.2
+ comment *   @summary Project 4 demo code || created: 03.16.2016
+ 	*   @todo
+ 	*/
+
+sets to strict mode	"use strict";
+initiates deadline syncconst PROMPT = require('readline-sync');
+
+sets variable	let continueResponse;
+sets variable	let currentMonth, currentGrade, currentClassroom, upperTuition;
+sets constants	const MAX_GRADE = 8,
+   	  MAX_MONTH = 9,
+   	  MAX_CLASSROOM = 3,
+   	  KDG_TUITION = 80;
+
+Mutator setting main function main() {
+clears the screen process.stdout.write('\x1Bc'); //Clears the screen
+calling continue response setContinueResponse();
+initiates a wile loop while (continueResponse === 1) {
+calls current month setCurrentMonth();
+calls current grade setCurrentGrade();
+calls current classroom setCurrentClassroom();
+calls payment Coupons processPaymentCoupons();
+calls continue response setContinueResponse();
+does a for loop for (let i = 0; i < MAX_CLASSROOM; i++) {
+calls print goodbye         	      printGoodbye();
+end of code block }
+end of code block }
+end of code block }
+
+calls main	main();
+
+Mutator sets continue response	function setContinueResponse() {
+if statement sets continue response to null if (continueResponse != null) {
+sets continue response to -1 continueResponse = -1;
+tests continue response while (continueResponse !== 0 && continueResponse !== 1) {
+prompts the user to set continue response continueResponse = Number(PROMPT.question(`\nDo you want to continue? [0=no, 	1=yes]: `));
+end of code block }
+calls else   	  } else {
+sets continue response to 1 continueResponse = 1;
+end of code block }
+end of code block }
+
+mutator sets current month function setCurrentMonth() {
+Tests current month if (currentMonth != null && currentMonth <= MAX_MONTH) {
+ads one to current month currentMonth++;
+calls else} else {
+sets current month to 1 currentMonth = 1;
+end of code block }
+end of code block }
+
+mutator sets current grade function setCurrentGrade() {
+tests current grade if (typeof currentGrade !=='undefined' && currentGrade <= MAX_GRADE) {	
+adds one to current grade currentGrade++;
+calls else    	 } else {
+sets current grade to 0 currentGrade = 0;
+end of code block    	 }
+end of code block	}
+
+mutator sets current classroom function setCurrentClassroom() {
+tests current classroom if (typeof currentClassroom !=='undefined' && currentClassroom <= MAX_CLASSROOM) {
+adds one to currentClassroom currentClassroom++;
+calls else    	 } else {
+sets current classroom to 1 currentClassroom = 1;
+end of code block    	 }
+end of code block	}
+
+mutator sets upper tuition function setUpperTuition() {
+sets local constant base tuition to 60 const BASE_TUITION = 60;
+calculates the value of upper tuition upperTuition = BASE_TUITION * currentGrade;
+end of code block }
+
+mutator processes payment coupons function processPaymentCoupons() {
+tests current grade while (currentGrade <= MAX_GRADE) {
+tests current classroom while (currentClassroom <= MAX_CLASSROOM) {
+tests current month while (currentMonth <= MAX_MONTH) {
+tests current grade if (currentGrade == 0) {
+displays message to user console.log(`\n\tThe tuition for month: ${currentMonth}, for classroom: 	${currentClassroom}, of grade: ${currentGrade} is: \$${KDG_TUITION}.`);
+calls else } else {
+calls upper tuition setUpperTuition();
+displays message to user console.log(`\n\tThe tuition for month: ${currentMonth}, for classroom: 	${currentClassroom}, of grade: ${currentGrade} is: \$${upperTuition}.`);
+end of code block    }
+calls current month setCurrentMonth();
+end of code block   }
+calls currentClassroom setCurrentClassroom();
+calls current month setCurrentMonth();
+end of code block   }
+calls current grade setCurrentGrade();
+calls current classroom setCurrentClassroom();
+end of code block     	}
+end of code block	}
+
+sets print goodbye function printGoodbye() {
+displays message to user console.log(`\tGoodbye.`);
+end of code block	}
